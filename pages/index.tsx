@@ -1,18 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Categories, PostCard, PostWidget} from '../components/index'
+import { Categories, PostCard, PostWidget} from '../components/index';
+import { getPosts } from '../services'
 
 export interface PostInterface {
   title: string,
   excerpt: string
 }
 
-const posts: PostInterface[] = [
-  { title: 'React Testing', excerpt: 'Learn react testing'},
-  { title: 'React with Tailwind', excerpt: 'Learn react with tailwind'},
-];
-
-const Home: NextPage = (): React.ReactElement => {
+const Home: NextPage = ({ posts }): React.ReactElement => {
+  console.log('posts', posts);
+  
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
@@ -36,6 +34,13 @@ const Home: NextPage = (): React.ReactElement => {
       </main>
     </div>
   )
+}
+
+export async function getStaticProps(): Promise<object> {
+  const posts = (await getPosts()) || [];
+  return {
+    props: { posts }
+  }
 }
 
 export default Home
