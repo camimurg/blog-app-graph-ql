@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-interface CategoriesType {
-  name: string,
-  slug: string,
-}
-
-const categories: CategoriesType[] = [
-  { name: 'react', slug: 'react'},
-  { name: 'Web Development', slug: 'Web Development'},
-]
+import { getCategories } from '../services';
+import { Category } from '../types';
 
 const Header = (): React.ReactElement => {
+  const [categories, setCategories] = useState<Category[]>([])
+
+  useEffect(() => {
+    getCategories()
+      .then((newCategories) => setCategories(newCategories))
+  }, [])
+
   return (
     <div className='container mx-auto px-10 mb-8'>
         <div className='border-b w-full inline-block border-blue-400 py-8'>

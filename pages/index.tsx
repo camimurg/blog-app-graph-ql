@@ -4,22 +4,6 @@ import type { NextPage } from 'next';
 import { Categories, PostCard, PostWidget} from '../components/index';
 import { getPosts } from '../services';
 
-export interface PostInterface {
-  title: string,
-  excerpt: string,
-  featuredImage: {
-    url: string,
-  },
-  slug: string,
-  author: {
-    name: string,
-    photo: {
-      url: string,
-    },
-  },
-  createdAt: Date,
-}
-
 const Home: NextPage = ({ posts }): React.ReactElement => {
   return (
     <div>
