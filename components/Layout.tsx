@@ -1,10 +1,10 @@
-import React from 'react';
-import { Header } from './'
+import React, { ReactNode } from 'react';
+import { Header } from './';
 
-const Layout = ({ 
+const Layout = ({
     children
   }:{
-    children : React.ReactNode 
+    children: ReactNode
   }): React.ReactElement => {
   return (
    <>

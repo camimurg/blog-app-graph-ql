@@ -1,8 +1,8 @@
-import React from 'react'
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import React from 'react';
+import Head from 'next/head';
+import type { NextPage } from 'next';
 import { Categories, PostCard, PostWidget} from '../components/index';
-import { getPosts } from '../services'
+import { getPosts } from '../services';
 
 export interface PostInterface {
   title: string,
@@ -20,8 +20,7 @@ export interface PostInterface {
   createdAt: Date,
 }
 
-const Home: NextPage = ({ posts }) => {
-  
+const Home: NextPage = ({ posts }): React.ReactElement => {
   return (
     <div>
       <Head>
