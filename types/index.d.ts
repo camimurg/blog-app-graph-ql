@@ -14,6 +14,10 @@ export interface PostInterface {
   createdAt: Date,
 }
 
+export type PostNode = {
+  node: PostInterface
+}
+
 export interface Category {
   name: string,
   slug: string,
