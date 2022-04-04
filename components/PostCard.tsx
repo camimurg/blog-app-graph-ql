@@ -1,7 +1,6 @@
 import React from 'react';
-import { PostInterface } from '../pages/index'
+import { PostInterface } from '../types'
 import moment from 'moment';
-import link from 'next/link';
 import Link from 'next/link';
 
 const PostCard = (props: {

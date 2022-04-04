@@ -3,24 +3,13 @@ import Head from 'next/head';
 import type { NextPage } from 'next';
 import { Categories, PostCard, PostWidget} from '../components/index';
 import { getPosts } from '../services';
+import type { PostNode } from '../types';
 
-export interface PostInterface {
-  title: string,
-  excerpt: string,
-  featuredImage: {
-    url: string,
-  },
-  slug: string,
-  author: {
-    name: string,
-    photo: {
-      url: string,
-    },
-  },
-  createdAt: Date,
-}
-
-const Home: NextPage = ({ posts }): React.ReactElement => {
+const Home = ({ 
+  posts 
+}: { 
+  posts: PostNode[]
+}): React.ReactElement => {
   return (
     <div>
       <Head>

@@ -3,13 +3,13 @@ import moment from 'moment';
 import Link from 'next/link';
 
 import { getRecentPosts, getSimilarPosts } from '../services';
-import { PostInterface } from '../pages/index'
+import { Category, PostInterface } from '../types'
 
 const PostWidget = ({
   categories,
   slug,
 }: {
-  categories?: string[];
+  categories?: Category[];
   slug?: string;
 }): React.ReactElement => {
   const [relatedPosts, setRelatedPosts ] = useState<PostInterface[]>([])
@@ -30,7 +30,7 @@ const PostWidget = ({
         { slug ? 'Related Posts' : 'Recent Posts'}
       </h3>
       {relatedPosts.map((post) => (
-          <div key={post.title} className="flex items-center w-full">
+          <div key={post.title} className="flex items-center w-full mb-4">
             <div className='w-16 flex-none'>
               <img
                 alt={post.title}
