@@ -9,13 +9,13 @@ const PostWidget = ({
   categories,
   slug,
 }: {
-  categories?: Category[];
+  categories?: string[];
   slug?: string;
 }): React.ReactElement => {
   const [relatedPosts, setRelatedPosts ] = useState<PostInterface[]>([])
 
   useEffect(() => {
-    if (slug) {
+    if (slug && categories) {
       getSimilarPosts(categories, slug)
         .then((result) => setRelatedPosts(result))
     } else {
