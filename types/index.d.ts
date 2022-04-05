@@ -1,3 +1,21 @@
+export type PostNode = {
+  node: PostInterface
+}
+
+export type Author = {
+  id: string,
+  name: string,
+  bio: string,
+  photo: {
+    url: string,
+  }
+}
+
+export interface Category {
+  name: string,
+  slug: string,
+}
+
 export interface PostInterface {
   title: string,
   excerpt: string,
@@ -5,12 +23,7 @@ export interface PostInterface {
     url: string,
   },
   slug: string,
-  author: {
-    name: string,
-    photo: {
-      url: string,
-    },
-  },
+  author: Author,
   createdAt: Date,
   categories: Category[]
   content: {
@@ -23,15 +36,6 @@ export interface PostInterface {
       }[],
     },
   },
-}
-
-export type PostNode = {
-  node: PostInterface
-}
-
-export interface Category {
-  name: string,
-  slug: string,
 }
 
 export interface contentObj {

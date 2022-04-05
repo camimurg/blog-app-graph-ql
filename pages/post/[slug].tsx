@@ -10,7 +10,7 @@ const PostDetails = ({ post }: { post: PostInterface}) => {
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
         <div className="col-span-1 lg:col-span-8">
           <PostDetail post={post} />
-          <Author post={post.author} />
+          <Author author={post.author} />
           <CommentsForm slug={post.slug} />
           <Comments slug={post.slug} />
         </div>
@@ -25,12 +25,10 @@ const PostDetails = ({ post }: { post: PostInterface}) => {
   )
 }
 
-
 export default PostDetails;
 
 // Fetch data at build time
 export async function getStaticProps({ params }) {
-  console.log('params', params);
   
   const data: PostInterface = await getPostDetails(params.slug) || [];
   return {
