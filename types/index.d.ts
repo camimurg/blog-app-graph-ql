@@ -53,6 +53,12 @@ export type contentType = 'heading-three' | 'paragraph' | 'heading-four' | 'imag
 export type DataComment = {
   name: string,
   email: string,
-  commment: string,
+  comment: string,
   slug: string
+}
+
+export type Comment = {
+  name: string,
+  createdAt: string,
+  comment: string,
 }

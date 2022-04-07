@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { submitComment } from '../services';
+import { DataComment } from '../types';
 
 const CommentsForm = ({slug}: {slug: string}): React.ReactElement => {
   const [error, setError] = useState(false);
-  const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const commentEl= useRef<HTMLTextAreaElement>(null);
   const nameEl = useRef<HTMLInputElement>(null);
@@ -11,24 +11,26 @@ const CommentsForm = ({slug}: {slug: string}): React.ReactElement => {
   const storeDataEl = useRef(null);
 
   useEffect(() => {
-    nameEl.current?.value = window.localStorage.getItem('name')
-    emailEl.current?.value = window.localStorage.getItem('email')
+    let name: string | null | undefined = nameEl.current?.value;
+    let email: string | null | undefined = emailEl.current?.value;
+    name = window.localStorage.getItem('name')
+    email = window.localStorage.getItem('email')
   }, [])
 
   const handleCommentSubmission = (): void => {
     // at the start we don't have error
     setError(false)
 
-    const comment = commentEl.current?.value;
-    const name = nameEl.current?.value;
-    const email = emailEl.current?.value;
+    const comment = commentEl.current?.value!;
+    const name = nameEl.current?.value!;
+    const email = emailEl.current?.value!;
     const storeData = emailEl.current?.checked;
 
     //check if the error esist
     if (!comment || !name || !email) {
       setError(true)
     }
-    const commentObj = { name, email, comment, slug }
+    const commentObj: DataComment = { name, email, comment, slug }
 
     if (storeData) {
       window.localStorage.setItem('name', name!);
