@@ -49,3 +49,10 @@ export interface contentObj {
 }
 
 export type contentType = 'heading-three' | 'paragraph' | 'heading-four' | 'image'
+
+export type DataComment = {
+  name: string,
+  email: string,
+  commment: string,
+  slug: string
+}
