@@ -1,10 +1,16 @@
 import React from 'react';
+import { useRouter} from 'next/router'
 import { getPosts, getPostDetails } from '../../services'
-
-import { PostDetail, Categories, PostWidget, Author, Comments, CommentsForm } from '../../components'
-import { PostInterface, PostNode } from '../../types';
+import { PostDetail, Categories, PostWidget, Author, Comments, CommentsForm, Loader } from '../../components'
+import type { PostInterface, PostNode } from '../../types';
 
 const PostDetails = ({ post }: { post: PostInterface}) => {
+  const router = useRouter();
+
+  if(router.isFallback) {
+    return <Loader></Loader>
+  }
+  
   return (
     <div className='container mx-auto px-10 mb-8'>
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
@@ -28,7 +34,7 @@ const PostDetails = ({ post }: { post: PostInterface}) => {
 export default PostDetails;
 
 // Fetch data at build time
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: Record<string, string> }) {
   
   const data: PostInterface = await getPostDetails(params.slug) || [];
   return {
